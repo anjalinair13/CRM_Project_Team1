@@ -19,6 +19,7 @@ namespace CRM_Web_Api.Models
         public bool IsAvailable { get; set; }
         public decimal CoursePrice { get; set; }
         public string CourseDescription { get; set; }
+        public string UrlString { get; set; }
 
         public virtual Qualification Qualification { get; set; }
         public virtual ICollection<Batch> Batch { get; set; }

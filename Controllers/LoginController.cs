@@ -57,32 +57,7 @@ namespace CRM_Web_Api.Controllers
             }
             return response;
         }
-
-        // get user details with username and password
-        #region user details 
-
-
-        #endregion
-        [Authorize(AuthenticationSchemes = "Bearer")]
-        [HttpGet]
-        [Route("GetUser/{UserName}/{Password}")]
-
-        public async Task<ActionResult<Users>> GetUser(string userName, string password)
-        {
-            try
-            {
-                var user = loginRepository.validateUser(userName, password);
-                if (user == null)
-                {
-                    return NotFound();
-                }
-                return user;
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
+        
 
 
         //Generate token
@@ -124,6 +99,32 @@ namespace CRM_Web_Api.Controllers
 
             }
             return null;
+        }
+
+        // get user details with username and password
+        #region user details 
+
+
+        #endregion
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpGet]
+        [Route("GetUser/{UserName}/{Password}")]
+
+        public async Task<ActionResult<Users>> GetUser(string userName, string password)
+        {
+            try
+            {
+                var user = loginRepository.validateUser(userName, password);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                return user;
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
         }
 
     }

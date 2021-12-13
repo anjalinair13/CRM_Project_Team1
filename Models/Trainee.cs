@@ -12,9 +12,6 @@ namespace CRM_Web_Api.Models
         }
 
         public int TraineeId { get; set; }
-        public string TraineeName { get; set; }
-        public decimal TraineeContact { get; set; }
-        public string TraineeEmail { get; set; }
         public int? BatchId { get; set; }
         public int? UserId { get; set; }
         public bool? IsActive { get; set; }

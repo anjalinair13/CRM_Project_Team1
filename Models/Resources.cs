@@ -17,6 +17,8 @@ namespace CRM_Web_Api.Models
         public bool IsAvailable { get; set; }
         public decimal ResourceCost { get; set; }
         public string ResourceDescription { get; set; }
+        public int? Capacity { get; set; }
+        public string UrlString { get; set; }
 
         public virtual ICollection<ResourceEnquiry> ResourceEnquiry { get; set; }
         public virtual ICollection<ResourcePurchase> ResourcePurchase { get; set; }

@@ -26,18 +26,19 @@ namespace CRM_Web_Api.Models
         public virtual DbSet<ResourcePurchase> ResourcePurchase { get; set; }
         public virtual DbSet<Resources> Resources { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<Trainee> Trainee { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-
         /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            { 
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Data Source=YADHUKRISHNANEM\\SQLEXPRESS;Initial Catalog=CRM_Database;Integrated Security=True");
             }
-        }*/
-
+        }
+        */
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Batch>(entity =>
@@ -70,6 +71,14 @@ namespace CRM_Web_Api.Models
 
                 entity.Property(e => e.CourseEnquiryId).HasColumnName("courseEnquiryId");
 
+                entity.Property(e => e.AdminReply)
+                    .HasColumnName("adminReply")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AdminReplyDate)
+                    .HasColumnName("adminReplyDate")
+                    .HasColumnType("date");
+
                 entity.Property(e => e.CourseId).HasColumnName("courseId");
 
                 entity.Property(e => e.Description)
@@ -82,14 +91,35 @@ namespace CRM_Web_Api.Models
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
+                entity.Property(e => e.EnquirerName)
+                    .HasColumnName("enquirerName")
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.EnquiryDate)
                     .HasColumnName("enquiryDate")
                     .HasColumnType("date");
+
+                entity.Property(e => e.IsActive).HasColumnName("isActive");
+
+                entity.Property(e => e.QualificationId).HasColumnName("qualificationId");
+
+                entity.Property(e => e.StatusId).HasColumnName("statusId");
 
                 entity.HasOne(d => d.Course)
                     .WithMany(p => p.CourseEnquiry)
                     .HasForeignKey(d => d.CourseId)
                     .HasConstraintName("FK__courseEnq__cours__49C3F6B7");
+
+                entity.HasOne(d => d.Qualification)
+                    .WithMany(p => p.CourseEnquiry)
+                    .HasForeignKey(d => d.QualificationId)
+                    .HasConstraintName("FK__courseEnq__quali__5FB337D6");
+
+                entity.HasOne(d => d.Status)
+                    .WithMany(p => p.CourseEnquiry)
+                    .HasForeignKey(d => d.StatusId)
+                    .HasConstraintName("FK__courseEnq__statu__5DCAEF64");
             });
 
             modelBuilder.Entity<CoursePurchase>(entity =>
@@ -153,6 +183,10 @@ namespace CRM_Web_Api.Models
 
                 entity.Property(e => e.QualificationId).HasColumnName("qualificationId");
 
+                entity.Property(e => e.UrlString)
+                    .HasColumnName("urlString")
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.Qualification)
                     .WithMany(p => p.Courses)
                     .HasForeignKey(d => d.QualificationId)
@@ -215,6 +249,14 @@ namespace CRM_Web_Api.Models
 
                 entity.Property(e => e.ResourceEnquiryId).HasColumnName("resourceEnquiryId");
 
+                entity.Property(e => e.AdminReply)
+                    .HasColumnName("adminReply")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AdminReplyDate)
+                    .HasColumnName("adminReplyDate")
+                    .HasColumnType("date");
+
                 entity.Property(e => e.Description)
                     .HasColumnName("description")
                     .HasMaxLength(30)
@@ -225,16 +267,37 @@ namespace CRM_Web_Api.Models
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
+                entity.Property(e => e.EnquirerName)
+                    .HasColumnName("enquirerName")
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.EnquiryDate)
                     .HasColumnName("enquiryDate")
                     .HasColumnType("date");
 
+                entity.Property(e => e.IsActive).HasColumnName("isActive");
+
+                entity.Property(e => e.QualificationId).HasColumnName("qualificationId");
+
                 entity.Property(e => e.ResourceId).HasColumnName("resourceId");
+
+                entity.Property(e => e.StatusId).HasColumnName("statusId");
+
+                entity.HasOne(d => d.Qualification)
+                    .WithMany(p => p.ResourceEnquiry)
+                    .HasForeignKey(d => d.QualificationId)
+                    .HasConstraintName("FK__resourceE__quali__60A75C0F");
 
                 entity.HasOne(d => d.Resource)
                     .WithMany(p => p.ResourceEnquiry)
                     .HasForeignKey(d => d.ResourceId)
                     .HasConstraintName("FK__resourceE__resou__4CA06362");
+
+                entity.HasOne(d => d.Status)
+                    .WithMany(p => p.ResourceEnquiry)
+                    .HasForeignKey(d => d.StatusId)
+                    .HasConstraintName("FK__resourceE__statu__5EBF139D");
             });
 
             modelBuilder.Entity<ResourcePurchase>(entity =>
@@ -280,6 +343,8 @@ namespace CRM_Web_Api.Models
 
                 entity.Property(e => e.ResourceId).HasColumnName("resourceId");
 
+                entity.Property(e => e.Capacity).HasColumnName("capacity");
+
                 entity.Property(e => e.IsAvailable).HasColumnName("isAvailable");
 
                 entity.Property(e => e.IsPublic).HasColumnName("isPublic");
@@ -295,6 +360,10 @@ namespace CRM_Web_Api.Models
                 entity.Property(e => e.ResourceName)
                     .HasColumnName("resourceName")
                     .HasMaxLength(40)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UrlString)
+                    .HasColumnName("urlString")
                     .IsUnicode(false);
             });
 
@@ -315,27 +384,29 @@ namespace CRM_Web_Api.Models
                     .IsUnicode(false);
             });
 
+            modelBuilder.Entity<Status>(entity =>
+            {
+                entity.ToTable("status");
+
+                entity.Property(e => e.StatusId)
+                    .HasColumnName("statusId")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Status1)
+                    .HasColumnName("status")
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<Trainee>(entity =>
             {
                 entity.Property(e => e.TraineeId).HasColumnName("traineeId");
 
                 entity.Property(e => e.BatchId).HasColumnName("batchId");
 
-                entity.Property(e => e.IsActive).HasColumnName("isActive");
-
-                entity.Property(e => e.TraineeContact)
-                    .HasColumnName("traineeContact")
-                    .HasColumnType("numeric(10, 0)");
-
-                entity.Property(e => e.TraineeEmail)
-                    .IsRequired()
-                    .HasColumnName("traineeEmail")
-                    .IsUnicode(false);
-
-                entity.Property(e => e.TraineeName)
-                    .IsRequired()
-                    .HasColumnName("traineeName")
-                    .IsUnicode(false);
+                entity.Property(e => e.IsActive)
+                    .HasColumnName("isActive")
+                    .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
@@ -357,7 +428,10 @@ namespace CRM_Web_Api.Models
 
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
-                entity.Property(e => e.IsActive).HasColumnName("isActive");
+                entity.Property(e => e.IsActive)
+                    .IsRequired()
+                    .HasColumnName("isActive")
+                    .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Password)
                     .IsRequired()
@@ -365,7 +439,18 @@ namespace CRM_Web_Api.Models
                     .HasMaxLength(40)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RoleId).HasColumnName("roleId");
+                entity.Property(e => e.RoleId)
+                    .HasColumnName("roleId")
+                    .HasDefaultValueSql("((4))");
+
+                entity.Property(e => e.UserContact)
+                    .HasColumnName("userContact")
+                    .HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.UserEmail)
+                    .HasColumnName("userEmail")
+                    .HasMaxLength(30)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.UserName)
                     .IsRequired()

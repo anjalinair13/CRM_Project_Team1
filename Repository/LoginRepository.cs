@@ -1,4 +1,6 @@
 ﻿using CRM_Web_Api.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +33,7 @@ namespace CRM_Web_Api.Repository
             return null;
         }
 
-        //get User
+        //get User by password
         public Users GetUser(string UserName, string Password)
         {
             if (_db != null)
@@ -46,6 +48,7 @@ namespace CRM_Web_Api.Repository
             return null;
         }
 
+       
 
     }
 }

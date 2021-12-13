@@ -41,8 +41,13 @@ namespace CRM_Web_Api
             item.UseSqlServer(Configuration.GetConnectionString("EmpDBConnection"))
             );
             //add dependancy injection for PostRepository
-            //services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            
             services.AddScoped<ILoginRepository, LoginRepository>();
+            services.AddScoped<ICourseResource, CourseResource>();
+            services.AddScoped<IEnquiry, Enquiry>();
+            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+            services.AddScoped<IUser, User>();
+            services.AddScoped<IPageVisitRepo,PageVisitRepo>();
 
             //register a JWT authentication schema
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -77,6 +82,13 @@ namespace CRM_Web_Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(options =>
+            options.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+            );
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -85,6 +97,7 @@ namespace CRM_Web_Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
 
             app.UseAuthorization();
 
