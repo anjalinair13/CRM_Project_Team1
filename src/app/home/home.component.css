@@ -1,0 +1,77 @@
+h3, .h3 {
+
+  font-size: 2.0rem;
+
+  line-height: 1.5;
+
+  color: white;
+
+  font-weight: 400;
+
+  font-family: "Poppins", Arial, sans-serif;
+
+}
+.btn {
+  padding: 8px 20px;
+  margin: 7px 0;
+  border: 2px solid white;
+  border-radius: 8px;
+  background: none;
+  color: white;
+  cursor: pointer;
+ 
+}
+
+
+header {
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://www.incimages.com/uploaded_files/image/1920x1080/getty_933383882_2000133420009280345_410292.jpg);
+
+  background-size: cover;
+
+  background-position: center;
+
+  height: 100vh;    
+
+}
+
+.hero-text-box {
+
+  width: 100%;
+
+  padding-top: 10%;
+
+  padding-left: 10%;
+
+}
+.btn:hover,
+
+.btn:active,
+
+input[type=submit]:hover,
+
+input[type=submit]:active {
+
+background-color: #7829cf;
+
+}
+
+
+.btn-full:hover,
+
+.btn-full:active {
+
+border: 1px solid #7829cf;
+
+}
+
+
+.btn-ghost:hover,
+
+.btn-ghost:active {
+
+border: 1px solid #7829cf;
+
+color: #fff;
+
+}

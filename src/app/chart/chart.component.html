@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="header">
+        <h5>Page visits</h5>
+        <!--Search functionality
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Search here..." [(ngModel)]="filter">
+
+        </div>-->
+        <!-- <button class="btn btn-primary" style="float: right; margin-bottom: 10px;">Add Employee</button>
+        <a [routerLink]="['../course']" class="btn btn-primary" style="float: right; margin-bottom: 10px;">Add
+            Course</a>-->
+    </div>
+   <table class="table table-bordered table-striped">
+     <thead>
+         <tr>
+             <th>Page Name</th>
+             <th>Visits</th>
+             
+         </tr>
+     </thead>
+     <tbody>
+         <tr  *ngFor="let crs of pageService.pagevisit">  <!--|filter: filter |paginate:{itemsPerPage:2, currentPage: page}" -->
+            
+             <td (click)="populateForm(crs)">{{crs.PageName}}</td>
+             <td (click)="populateForm(crs)">{{crs.PageCount}}</td>
+            
+                
+         </tr>
+     </tbody>
+    </table>
+
+    <br>
+
+    <div>
+
+        <button class="button-gen" (click)="getPageCount()">Page Visit Chart</button>
+
+        <div class="mgr-chart" >
+
+            <div style="display: block">
+
+               
+
+                <canvas baseChart
+
+                            [data]="doughnutChartData"
+
+                            [labels]="doughnutChartLabels"
+
+                            [chartType]="doughnutChartType"
+
+                            [colors]="doughnutColors"
+
+                           ></canvas>
+
+                         
+
+              </div>
+
+        </div>
+
+    </div>
+   
+    <div class="footer">
+        <!--Pagination
+        <pagination-controls (pageChange)="page=($event)"></pagination-controls>-->
+    </div>
+
+</div>

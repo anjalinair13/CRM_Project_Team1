@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Resource {\n  constructor() {\n    //data fields\n    this.ResourceId = 0;\n    this.ResourceCost = 0;\n    this.Capacity = 0;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

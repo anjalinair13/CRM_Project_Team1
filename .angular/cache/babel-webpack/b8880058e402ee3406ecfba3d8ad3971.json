@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Renquiry {\n  constructor() {\n    this.Description = '';\n    this.EnquiryDate = new Date();\n    this.Email = '';\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

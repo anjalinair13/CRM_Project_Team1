@@ -1,0 +1,47 @@
+
+<div class="container">
+
+    <div class="header">
+        <h5>User Info</h5>
+        <!--search functionality-->
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Search here..." [(ngModel)]="filter">
+        </div>
+        <a [routerLink]="['/user']" class="btn btn-primary" style="float: right;margin : 15px;">Add User</a>
+    </div>
+    <table class=" table table-bordered table-striped ">
+        <thead>
+            <tr>
+                <th>User Id</th>
+                <th>User Name</th>
+                <th>Password</th>
+                <th>RoleId</th>
+                <th>Contact</th>
+
+                <th>Email</th>
+                <th>Is Active</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of userService.users | filter: filter| paginate: {itemsPerPage: 3, currentPage: page} ">
+                <td (click)="populateForm(user) ">{{user.UserId}}</td>
+                <td (click)="populateForm(user) ">{{user.UserName}}</td>
+                <td (click)="populateForm(user) ">{{user.Password}}</td>
+
+                <td (click)="populateForm(user) ">{{user.RoleId}}</td>
+                <td (click)="populateForm(user) ">{{user.UserContact}}</td>
+                <td (click)="populateForm(user) ">{{user.UserEmail}}</td>
+                <td (click)="populateForm(user) ">{{user.IsActive}}</td>
+
+                <td>
+                    <button class="btn btn-sm btn-info" (click)="updateUser(user.UserId)">edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="footer ">
+        <!--Pagination-->
+        <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+    </div>
+</div>

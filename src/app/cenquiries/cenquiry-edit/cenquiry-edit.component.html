@@ -1,0 +1,135 @@
+<form name="cenquiryeditform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+    <!--Course Enquiry Id-->
+
+    <div class="form-group">
+
+        <input type="hidden" name="CourseEnquiryId" [(ngModel)]="cenquiryService.formData.CourseEnquiryId" />
+        <!--<div class="form-group">
+        <label><b>Course Enquiry Id:</b></label>
+        <input type="hidden" name="CourseEnquiryId" #CourseEnquiryId="ngModel" [ngModel]="cenquiryService.formData.CourseEnquiryId" class="form-control" placeholder="Enter Course Enquiry Id" [ngClass]="{'is-invalid':CourseEnquiryId.touched && CourseEnquiryId.invalid}" />
+        <div class="validation-error" *ngIf="CourseEnquiryId.touched && CourseEnquiryId.invalid">
+            <div *ngIf="CourseEnquiryId.errors.required">
+                Course Enquiry Id required</div>
+        </div>-->
+    </div>
+    <input type="hidden" name="AdminReply" [(ngModel)]="cenquiryService.formData.AdminReply" />
+    <input type="hidden" name="AdminReplyDate" [(ngModel)]="cenquiryService.formData.AdminReplyDate" />
+    <input type="hidden" name="IsActive" [(ngModel)]="cenquiryService.formData.IsActive" />
+    <input type="hidden" name="StatusId" [(ngModel)]="cenquiryService.formData.StatusId" />
+    <input type="hidden" name="Email" [(ngModel)]="cenquiryService.formData.Email" />
+    <input type="hidden" name="EnquiryDate" [(ngModel)]="cenquiryService.formData.EnquiryDate" />
+        <!--Enquirer name-->
+        <div class="form-group">
+
+            <label><b>Name</b></label>
+            <input name="EnquirerName" #EnquirerName="ngModel" [ngModel]="cenquiryService.formData.EnquirerName"
+                class="form-control" placeholder="Enter name" minlength="5" maxlength="250" required
+                [ngClass]="{'is-invalid':EnquirerName.touched && EnquirerName.invalid}" />
+            <div class="validation-error" *ngIf="EnquirerName.touched && EnquirerName.invalid">
+                <div *ngIf="EnquirerName.errors.required">
+                    Name is required</div>
+            </div>
+        </div>
+
+        <!--Description-->
+        <div class="form-group">
+
+            <label><b>Description:</b></label>
+            <input name="Description" #Description="ngModel" [ngModel]="cenquiryService.formData.Description"
+                class="form-control" placeholder="Enter Description" minlength="5" maxlength="250" required
+                [ngClass]="{'is-invalid':Description.touched && Description.invalid}" />
+            <div class="validation-error" *ngIf="Description.touched && Description.invalid">
+                <div *ngIf="Description.errors.required">
+                    Description is required</div>
+            </div>
+        </div>
+
+        <!--CourseId-->
+        <div class="form-group">
+            <label><b>Course Id:</b></label>
+            <input type="number" name="CourseId" #CourseId="ngModel" [(ngModel)]="cenquiryService.formData.CourseId"
+                class="form-control" placeholder="Enter Course Id" required
+                [ngClass]="{ 'is-invalid': CourseId.touched && CourseId.invalid }" />
+            <div class="validation-error" *ngIf="CourseId.touched 
+        && CourseId.invalid">
+                <div *ngIf="CourseId.errors.required">Course Id is required</div>
+            </div>
+        </div>
+
+        <!--Email
+    <div class="form-group">
+        <label><b>Email:</b></label>
+        <input name="Email" #Email="ngModel" [(ngModel)]="cenquiryService.formData.Email" placeholder="Enter email id" class="form-control" required [ngClass]="{ 'is-invalid': Email.touched
+         && Email.invalid }" />
+        <div class="validation-error" *ngIf="Email.touched 
+        && Email.invalid">
+            <div *ngIf="Email.errors.required">
+                Email is required</div>
+        </div>
+    </div>-->
+
+        <!--QualificationId-->
+        <div class="form-group">
+            <label><b></b></label>
+            <input type="hidden" name="QualficationId" #QualficationId="ngModel" [(ngModel)]="cenquiryService.formData.QualificationId"
+                class="form-control" placeholder="Enter Qualfication Id" required
+                [ngClass]="{ 'is-invalid': QualficationId.touched && QualficationId.invalid }" />
+            <div class="validation-error" *ngIf="QualficationId.touched 
+        && QualficationId.invalid">
+                <div *ngIf="QualficationId.errors.required">Qualfication is required</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4">Status</label>
+            <select name="StatusId" id="StatusId" class="form-control" #StatusId="ngModel" required
+                [(ngModel)]="cenquiryService.formData.StatusId">
+                <option value=0 disabled>Choose status</option>
+                <option *ngFor="let cat of cenquiryService.statuses" 
+                value="{{cat.StatusId}}">{{cat.Status1}}</option>
+
+            </select>
+            <div class="validation-error" *ngIf="StatusId.touched && StatusId.invalid">
+
+                <div *ngIf="StatusId.errors.required">StatusId is required</div>
+
+            </div>
+
+        </div>
+
+
+        <!--Course enquiry date-->
+        <div class="form-group">
+            <label>Reply Date</label>
+            <input type="date" name="AdminReplyDate" #AdminReplyDate="ngModel" [min]="minDate" [max]="maxDate"
+                [(ngModel)]="cenquiryService.formData.AdminReplyDate" class="form-control" required [ngClass]="{ 'is-invalid': AdminReplyDate.touched
+         && AdminReplyDate.invalid }" />
+            <div class="validation-error" *ngIf="AdminReplyDate.touched 
+        && AdminReplyDate.invalid">
+                <div *ngIf="AdminReplyDate.errors.required">
+                    Reply Date is required</div>
+            </div>
+        </div>
+        <br>
+
+        <!--Reply-->
+        <div class="form-group">
+
+            <label><b>Reply</b></label>
+            <input name="AdminReply" #AdminReply="ngModel" [ngModel]="cenquiryService.formData.AdminReply"
+                class="form-control" placeholder="Enter reply" minlength="2" maxlength="250" required
+                [ngClass]="{'is-invalid':AdminReply.touched && AdminReply.invalid}" />
+            <div class="validation-error" *ngIf="AdminReply.touched && AdminReply.invalid">
+                <div *ngIf="AdminReply.errors.required">
+                    Reply is required</div>
+            </div>
+        </div>
+
+        <!--Submit Button-->
+        <div class="form-group">
+            <button type="submit" [disabled]="!(form.valid && form.dirty)"
+                class="btn btn-lg btn-primary form-control">Submit</button>
+        </div>
+
+    
+</form>

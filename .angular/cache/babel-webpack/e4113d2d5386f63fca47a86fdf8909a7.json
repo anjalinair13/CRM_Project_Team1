@@ -1,0 +1,1 @@
+{"ast":null,"code":"//import { Role } from \"./role\";\nexport class User {\n  constructor() {\n    this.UserId = 0;\n    this.sActive = true;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

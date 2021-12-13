@@ -1,0 +1,100 @@
+<form name="resourceform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+
+    <!--Resource ID-->
+    <input type="hidden" name="ResourceId" [(ngModel)]="resourceService.formData.ResourceId" />
+
+    <!--ResourceName-->
+    <div class="form-group">
+        <label>Resource Name</label>
+        <input type="text" name="ResourceName" #ResourceName="ngModel" [(ngModel)]="resourceService.formData.ResourceName"
+            class="form-control" placeholder="Enter Resource Name" required minlength="5" maxlength="25"
+            [ngClass]="{ 'is-invalid': ResourceName.touched && ResourceName.invalid }" />
+            <!--
+        <div class="validation-error" *ngIf="ResourceName.touched && ResourceName.invalid">
+            <div *ngIf="ResourceName.errors?.['required']">Resource Name is required</div>
+        </div>-->
+    </div>
+
+    <!--Resource Cost-->
+    <div class="form-group">
+        <label>Resource Cost</label>
+
+        <input type ="number" min="1" name="ResourceCost" pattern="[0-9]{4}" #ResourceCost="ngModel" [(ngModel)]="resourceService.formData.ResourceCost"
+
+         class="form-control" placeholder="Enter Resource Cost" required
+        [ngClass]="{ 'is-invalid': ResourceCost.touched && ResourceCost.invalid }" />
+            <!--
+        <div class="validation-error" *ngIf="ResourceCost.touched && ResourceCost.invalid">
+            <div *ngIf="ResourceCost.errors?.['required']">Resource Cost is required</div>
+        </div>-->
+    </div>
+
+    <!--Resource Description-->
+    <div class="form-group">
+        <label>Resource Description</label>
+        <input type="text" name="ResourceDescription" #ResourceDescription="ngModel" [(ngModel)]="resourceService.formData.ResourceDescription"
+            class="form-control" placeholder="Enter Resource Description" required
+            [ngClass]="{ 'is-invalid': ResourceDescription.touched && ResourceDescription.invalid }" />
+            <!--
+        <div class="validation-error" *ngIf="ResourceDesc.touched && ResourceDesc.invalid">
+            <div *ngIf="ResourceDesc.errors?.['required']">Resource description is required</div>
+        </div>-->
+    </div>
+
+    <!--Resource Capacity-->
+    <div class="form-group">
+        <label>Resource Capacity</label>
+        <input type="number" pattern="[0-9]{3}" onkeypress="return event.charCode >= 48" name="capacity" #capacity="ngModel" [(ngModel)]="resourceService.formData.Capacity" class="form-control"
+            placeholder="Enter Resource capacity" required
+            [ngClass]="{ 'is-invalid': capacity.touched && capacity.invalid }" />
+            <!--
+        <div class="validation-error" *ngIf="capacity.touched && capacity.invalid">
+            <div *ngIf="capacity.errors?.['required']">Resource Capacity is required</div>
+        </div>-->
+    </div>
+
+    <!--IsPublic-->
+    <div class="form-group">
+        <div class="form-check">
+            <label class="col-md-4?">Is Public</label>
+            <input type="checkbox" name="IsPublic" id="IsPublic" #IsPublic="ngModel"
+                [(ngModel)]="resourceService.formData.IsPublic" class="form-check-input">
+        </div>
+    </div>
+
+    <!--IsAvailable-->
+    <div class="form-group">
+        <div class="form-check">
+            <label class="col-md-4?">Is Available</label>
+            <input type="checkbox" name="IsAvailable" id="isAvailable" #isAvailable="ngModel"
+                [(ngModel)]="resourceService.formData.IsAvailable" class="form-check-input">
+        </div>
+    </div>
+
+     <!--Course Picture Url-->
+
+     <div class="form-group">
+
+        <label>Url string for picture</label>
+
+    <input name="UrlString" #UrlString="ngModel" [(ngModel)]="resourceService.formData.UrlString"
+            class="form-control" place holder="enter UrlString for picture " minLength="2" maxLength="1000" required
+            [ngClass]="{'is invalid':UrlString.touched && UrlString.invalid}" />
+
+        <div class="validation-error" *ngIf="UrlString.touched&&UrlString.invalid">
+
+            <div *ngIf="UrlString.errors.required">UrlString is required</div>
+
+        </div>
+    </div>
+
+
+    <!--Submit button-->
+    <br>
+    <div class="form-group">
+        <button type="submit" [disabled]="!(form.valid && form.dirty)"
+            class="btn btn-lg btn-primary form-control">Submit</button>
+    </div>
+
+
+</form>

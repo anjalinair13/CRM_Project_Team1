@@ -1,0 +1,17 @@
+
+        
+    <div>
+        <button class="button-gen" (click)="getCourseName()">Generate Chart</button>
+        <div class="mgr-chart">
+            <div style="display: block">
+                <canvas baseChart
+                            [data]="doughnutChartData"
+                            [labels]="doughnutChartLabels"
+                            [chartType]="doughnutChartType"
+                            [colors]="doughnutColors"
+                           ></canvas>
+                           <h5>Courses with Enquiry Count</h5>
+              </div>
+        </div>
+    </div>
+  

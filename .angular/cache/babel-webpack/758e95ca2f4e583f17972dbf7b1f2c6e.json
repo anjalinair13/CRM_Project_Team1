@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Course {\n  constructor() {\n    this.CourseId = 0;\n    this.CourseName = '';\n    this.IsPublic = false;\n    this.IsAvailable = false;\n    this.CourseDescription = '';\n    this.UrlString = '';\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

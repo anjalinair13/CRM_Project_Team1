@@ -1,0 +1,124 @@
+<form name="renquiryform" #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
+    <!--Course Enquiry Id-->
+
+    <div class="form-group">
+
+        <input type="hidden" name="ResourceEnquiryId" [(ngModel)]="renquiryService.formData.ResourceEnquiryId" />
+        <!--<div class="form-group">
+        <label><b>Course Enquiry Id:</b></label>
+        <input type="hidden" name="CourseEnquiryId" #CourseEnquiryId="ngModel" [ngModel]="cenquiryService.formData.CourseEnquiryId" class="form-control" placeholder="Enter Course Enquiry Id" [ngClass]="{'is-invalid':CourseEnquiryId.touched && CourseEnquiryId.invalid}" />
+        <div class="validation-error" *ngIf="CourseEnquiryId.touched && CourseEnquiryId.invalid">
+            <div *ngIf="CourseEnquiryId.errors.required">
+                Course Enquiry Id required</div>
+        </div>
+    </div>-->
+    <input type="hidden" name="AdminReply" [(ngModel)]="renquiryService.formData.AdminReply" />
+    <input type="hidden" name="AdminReplyDate" [(ngModel)]="renquiryService.formData.AdminReplyDate" />
+    <input type="hidden" name="IsActive" [(ngModel)]="renquiryService.formData.IsActive" />
+    <input type="hidden" name="StatusId" [(ngModel)]="renquiryService.formData.StatusId" />
+        <!--Enquirer name-->
+        <div class="form-group">
+
+            <label><b>Name</b></label>
+            <input name="EnquirerName" #EnquirerName="ngModel" [ngModel]="renquiryService.formData.EnquirerName"
+                class="form-control" placeholder="Enter name" minlength="5" maxlength="250" required
+                [ngClass]="{'is-invalid':EnquirerName.touched && EnquirerName.invalid}" />
+            <div class="validation-error" *ngIf="EnquirerName.touched && EnquirerName.invalid">
+                <div *ngIf="EnquirerName.errors.required">
+                    Name is required</div>
+            </div>
+        </div>
+
+        <!--Description-->
+        <div class="form-group">
+
+            <label><b>Description:</b></label>
+            <input name="Description" #Description="ngModel" [ngModel]="renquiryService.formData.Description"
+                class="form-control" placeholder="Enter Description" minlength="5" maxlength="250" required
+                [ngClass]="{'is-invalid':Description.touched && Description.invalid}" />
+            <div class="validation-error" *ngIf="Description.touched && Description.invalid">
+                <div *ngIf="Description.errors.required">
+                    Description is required</div>
+            </div>
+        </div>
+
+        <!--CourseId-->
+        <div class="form-group">
+            <label><b></b></label>
+            <input type="hidden" name="ResourceId" #ResourceId="ngModel" [(ngModel)]="renquiryService.formData.ResourceId"
+                class="form-control" placeholder="Enter Resource Id" required
+                [ngClass]="{ 'is-invalid': ResourceId.touched && ResourceId.invalid }" />
+            <div class="validation-error" *ngIf="ResourceId.touched 
+        && ResourceId.invalid">
+                <div *ngIf="ResourceId.errors.required">Resource Id is required</div>
+            </div>
+        </div>
+
+        <!--Email-->
+        <div class="form-group">
+            <label><b>Email:</b></label>
+            <input type="email" pattern=".+@gmail\.com" name="Email" #Email="ngModel" 
+            [(ngModel)]="renquiryService.formData.Email"
+                placeholder="Enter email id" class="form-control" required [ngClass]="{ 'is-invalid': Email.touched
+         && Email.invalid }" />
+            <div class="validation-error" *ngIf="Email.touched 
+        && Email.invalid">
+                <div *ngIf="Email.errors.required">
+                    Email is required</div>
+            </div>
+        </div>
+
+        <!--QualificationId
+        <div class="form-group">
+            <label><b>QualificationId Id:</b></label>
+            <input name="QualficationId" #QualificationId="ngModel"
+                [(ngModel)]="cenquiryService.formData.QualificationId" class="form-control"
+                placeholder="Enter Qualification Id" required
+                [ngClass]="{ 'is-invalid': QualificationId.touched && QualificationId.invalid }" />
+            <div class="validation-error" *ngIf="QualificationId.touched 
+        && QualificationId.invalid">
+                <div *ngIf="QualifiicationId.errors.required">QualificationId is required</div>
+            </div>
+        </div>-->
+
+        <!--qualification dropdown
+        <div class="form-group">
+            <label class="col-md-4">Qualification</label>
+            <select name="QualificationId" id="QualificationId" class="form-control" #QualificationId="ngModel" required
+                [(ngModel)]="renquiryService.formData.QualificationId">
+                <option value=0 disabled>Choose Qualification</option>
+                <option *ngFor="let cat of renquiryService.qualifications" 
+                value="{{cat.QualificationId}}">{{cat.QualificationName}}</option>
+
+            </select>
+            <div class="validation-error" *ngIf="QualificationId.touched&&QualificationId.invalid">
+
+                <div *ngIf="QualificationId.errors.required">Qualification is required</div>
+
+            </div>
+
+        </div>-->
+
+
+        <!--Course enquiry date-->
+        <div class="form-group">
+            <label>Enquiry Date</label>
+            <input type="date" name="EnquiryDate" #EnquiryDate="ngModel" [min]="minDate" [max]="maxDate"
+                [(ngModel)]="renquiryService.formData.EnquiryDate" class="form-control" required [ngClass]="{ 'is-invalid': EnquiryDate.touched
+         && EnquiryDate.invalid }" />
+            <div class="validation-error" *ngIf="EnquiryDate.touched 
+        && EnquiryDate.invalid">
+                <div *ngIf="EnquiryDate.errors.required">
+                    Enquiry Date is required</div>
+            </div>
+        </div>
+        <br>
+
+        <!--Submit Button-->
+        <div class="form-group">
+            <button type="submit" [disabled]="!(form.valid && form.dirty)"
+                class="btn btn-lg btn-primary form-control">Submit</button>
+        </div>
+
+    </div>
+</form>

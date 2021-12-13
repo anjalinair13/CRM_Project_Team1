@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="header">
+       <br><br>
+        <!--Search functionality-->
+        <div class="form-group">
+            <input class="form-control" type="text" placeholder="Search here..." [(ngModel)]="filter">
+
+        </div>
+<br>
+<div class="row">
+    <ng-container
+        *ngFor="let resouce of resourceService.resources  |filter: filter |paginate:{itemsPerPage:3, currentPage: page}">
+        <ng-container *ngIf= "resouce.IsAvailable == true">
+        <div class="col-sm-4">
+            <div class="card" style="width: 18rem;">
+                <img src="{{resouce.UrlString}}"
+                    class="card-img-top" alt="...">
+
+                <div class="card-body">
+                    <h6><b>{{resouce.ResourceName}}</b></h6>
+                    <hr>
+                    <p class="card-text">This resource helps you learn how to craft excellency in {{resouce.ResourceName}}.
+                        
+                    </p>
+                    <hr>
+                    
+                    <p>Fees : {{resouce.ResourceCost}}</p>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a  (click)="passId(resouce.ResourceId)" class="btn btn-primary">Enquiry</a>
+                        </div>
+
+                        <!--div class="col-sm-6">
+                            <button type="button" class="btn btn-success">Request</button>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    </ng-container>
+
+</div>
+<div class="footer">
+    <!--Pagination-->
+    <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+</div>
+
+</div>
+

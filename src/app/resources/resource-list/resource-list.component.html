@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="header">
+        <h5>Resource Info</h5>
+          <!--Search-->
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Search here..."
+            [(ngModel)]="filter" >
+
+
+        </div>
+        <!--<a [routerLink]="['../resource']" class="btn btn-primary" style="float: right; margin-top: 10px;">Add Resource</a>-->
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ResourceId</th>
+                <th>ResourceName</th>
+                <th>Description</th>
+                <th>Capacity</th>
+                <th>Cost</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let resouce of resourceService.resources | filter:filter | paginate:{itemsPerPage:5 , currentPage:page}">
+                <ng-container *ngIf= "resouce.IsAvailable == true">
+                <td (click)="populateForm(resouce)">{{resouce.ResourceId}}</td>
+                <td (click)="populateForm(resouce)">{{resouce.ResourceName}}</td>
+                <td (click)="populateForm(resouce)">{{resouce.ResourceDescription}}</td>
+                <td (click)="populateForm(resouce)">{{resouce.Capacity}}</td>
+                <td (click)="populateForm(resouce)">{{resouce.ResourceCost}}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-danger" (click)="deleteResource(resouce)">X</button>&nbsp;
+                    <button (click)="updateResource(resouce.ResourceId)" class="btn btn-info" style="margin-left: 10px;" >Edit</button>&nbsp;
+
+                </td>
+                </ng-container>
+            </tr>
+
+        </tbody>
+    </table>
+    <div class="footer">
+        <!--pagination-->
+        <pagination-controls (pageChange)="page=($event)"></pagination-controls>
+    </div>
+    </div>

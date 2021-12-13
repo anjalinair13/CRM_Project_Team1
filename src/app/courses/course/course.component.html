@@ -1,0 +1,128 @@
+<form name="corform" #form="ngForm" autocomplete="off"
+(ngSubmit)="onSubmit(form)">
+
+    <!--Course ID-->
+
+    <input type="hidden" name="CourseId" [(ngModel)]="corservice.formData.CourseId" />
+
+    <!--Course Name-->
+
+    <div class="form-group">
+
+        <label>Course Name</label>
+
+        <input name="CourseName" #CourseName="ngModel" [(ngModel)]="corservice.formData.CourseName"
+            class="form-control" place holder="enter name " minLength="10" maxLength="25" required
+            [ngClass]="{'is invalid':CourseName.touched && CourseName.invalid}" />
+
+        <div class="validation-error" *ngIf="CourseName.touched&&CourseName.invalid">
+
+            <div *ngIf="CourseName.errors.required">Course Name is required</div>
+
+        </div>
+
+
+
+    </div>
+    
+    <!--qualification dropdown-->
+<div class="form-group">
+    <label class="col-md-4">Qualification</label>
+    <select name="QualificationId" id="QualificationId" class="form-control" #QualificationId="ngModel" required
+        [(ngModel)]="corservice.formData.QualificationId">
+        <option value=0 disabled>Choose Qualification</option>
+        <option *ngFor="let cat of corservice.qualifications" 
+        value="{{cat.QualificationId}}">{{cat.QualificationName}}</option>
+        
+    </select>
+    <div class="validation-error" *ngIf="QualificationId.touched&&QualificationId.invalid">
+
+        <div *ngIf="QualificationId.errors.required">Qualification is required</div>
+
+    </div>
+
+</div>
+
+    <!--IsPublic-->
+
+    <div class="form-group">
+        <div class="form-check">
+            <label class="form-check-label">IsPublic</label>
+            <input type="checkbox" name="IsPublic" id="IsPublic" #IsPublic="ngModel"
+                [(ngModel)]="corservice.formData.IsPublic" class="form-check-input">
+
+        </div>
+    </div>
+
+    <!--IsAvailable-->
+
+    <div class="form-group">
+        <div class="form-check">
+            <label class="form-check-label">IsAvailable</label>
+            <input type="checkbox" name="IsAvailable" id="IsAvailable" #IsAvailable="ngModel"
+                [(ngModel)]="corservice.formData.IsAvailable" class="form-check-input">
+
+        </div>
+    </div>
+
+    <!--CoursePrice-->
+
+    <div class="form-group">
+
+        <label>Course Price</label>
+
+        <input type="number" min="1" maxlength="4" pattern="[0-9]{4}" onkeypress="return event.charCode >= 48" name="CoursePrice" #CoursePrice="ngModel" [(ngModel)]="corservice.formData.CoursePrice"
+            class="form-control" place holder="enter Course Price " minLength="2" maxLength="25" required
+            [ngClass]="{'is invalid':CoursePrice.touched && CoursePrice.invalid}" />
+
+        <div class="validation-error" *ngIf="CoursePrice.touched&&CoursePrice.invalid">
+
+            <div *ngIf="CoursePrice.errors.required">Course Price is required</div>
+
+        </div>
+    </div>
+
+
+    <!--CourseDescription-->
+
+    <div class="form-group">
+
+        <label>Course Description</label>
+
+        <input name="CourseDescription" #CourseDescription="ngModel" [(ngModel)]="corservice.formData.CourseDescription"
+            class="form-control" place holder="enter Course Description " minLength="2" maxLength="100" required
+            [ngClass]="{'is invalid':CourseDescription.touched && CourseDescription.invalid}" />
+
+        <div class="validation-error" *ngIf="CourseDescription.touched&&CourseDescription.invalid">
+
+            <div *ngIf="CourseDescription.errors.required">Course Description is required</div>
+
+        </div>
+    </div>
+     <!--Course Picture Url-->
+
+     <div class="form-group">
+
+        <label>Url string for picture</label>
+
+    <input name="UrlString" #UrlString="ngModel" [(ngModel)]="corservice.formData.UrlString"
+            class="form-control" place holder="enter UrlString for picture " minLength="2" maxLength="1000" required
+            [ngClass]="{'is invalid':UrlString.touched && UrlString.invalid}" />
+
+        <div class="validation-error" *ngIf="UrlString.touched&&UrlString.invalid">
+
+            <div *ngIf="UrlString.errors.required">UrlString is required</div>
+
+        </div>
+    </div>
+
+
+    <!--Submit button-->
+    <br>
+    <div class="form-group" >
+        <button type="submit" [disabled]="!(form.valid && form.dirty)"
+        class="btn btn-lg btn-primary form-control">Submit</button>
+    </div>
+
+
+</form>

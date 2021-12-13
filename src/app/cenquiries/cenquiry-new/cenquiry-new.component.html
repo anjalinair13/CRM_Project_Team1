@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="header">
+        <h5>New enquiries</h5>
+        <!--Search functionality
+        <div class="form-group">
+            <input class="form-control" type="text"
+            placeholder="Search here..." [(ngModel)]="filter"> 
+
+        </div>
+       <button class="btn btn-primary" style="float: right; margin-bottom: 10px;">Add Employee</button>
+      <a [routerLink]="['../course']"class="btn btn-primary" style="float: right; margin-bottom: 10px;">Add Course</a>-->
+    </div>
+    <table class="table table-bordered table-striped">
+     <thead>
+         <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>EnquiryDate</th>
+            <th>CourseId</th>
+            <th>Email</th>
+             <!--<th></th>-->
+         </tr>
+     </thead>
+     <tbody>
+         <tr  *ngFor="let crs of cenquiryService.cenquiries ">  <!--| filter: filter| paginate:{itemsPerPage:2, currentPage: page}" -->
+            <ng-container *ngIf="crs.IsActive==true">
+             <td >{{crs.EnquirerName}}</td>
+             <td >{{crs.Description}}</td>
+             <td >{{crs.EnquiryDate | date:'dd-MM-yyyy'}}</td>
+             <td >{{crs.CourseId}}</td>
+             <td >{{crs.Email}}</td>
+             <!--<td (click)="populateForm(crs)">{{crs.AdminReplyDate}}</td>-->
+             <td>
+                <button class="btn btn-sm btn-outline-danger" (click)="deleteEnquiry(crs)">X</button>&nbsp;
+                <button class="btn btn-sm btn-info" (click)="updateCEnquiry(crs.CourseEnquiryId,crs)">Reply</button>
+            </td>
+                </ng-container>     
+         </tr>
+     </tbody>
+    </table>
+    <div class="footer">
+        <!--Pagination
+        <pagination-controls (pageChange)="page=($event)"></pagination-controls>-->
+    </div>
+
+</div>
+    
+

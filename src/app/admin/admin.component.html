@@ -1,0 +1,50 @@
+<header>
+    <div class="container">
+        <h5>
+            Welcome Admin :{{loggedUserName}}
+        </h5>
+    </div>
+
+    <div class="banner">
+        <div class="menu-bar">
+            <h1 class="logo"><span></span></h1>
+            <ul>
+                <!--<li><a href="#">Home</a></li>
+            <li><a href="#">About Us</a></li>-->
+                <li><a class="nav-link" [routerLink]="['../courses']">Courses </a>
+
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a [routerLink]="['../course']">Add Course</a></li>
+                            <li><a [routerLink]="['../courselist']">View Course</a></li>
+                            <li><a [routerLink]="['../cenquirylist']">View enquiries</a></li>
+                            <li><a [routerLink]="['../cenquirynew']">New enquiries</a></li>
+                            <li>
+                                <a href="#"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a class="nav-link" [routerLink]="['../resources']">Resources</a>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a [routerLink]="['../resource']">Add Resource</a></li>
+                            <li><a [routerLink]="['../resourcelist']">View Resource</a></li>
+                            <li><a [routerLink]="['../renquirylist']">View enquiries</a></li>
+                            <li><a [routerLink]="['../renquirynew']">New enquiries</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <!--<li><a href="#">About Us</a></li>
+            <li><a href="#">Contact us</a></li>
+              <li><a [routerLink]="['/login']">Sign In</a></li>-->
+                <li><a (click)="logout()">Logout</a></li>
+            </ul>
+        </div>
+
+
+    </div>
+
+
+
+</header>

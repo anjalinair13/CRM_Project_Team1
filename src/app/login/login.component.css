@@ -1,0 +1,28 @@
+.container {
+    margin: auto;
+    margin-top: 50px;
+    width: 50%;
+    flex-direction: center;
+    padding: 50px;
+    display: block;
+    text-align: center;
+    opacity: 1;
+  }
+  .background{
+    background-image: url('https://hitfigure.com/wp-content/uploads/2012/03/login-background.jpg');
+    background-repeat: no-repeat;
+    height: 150%;
+    background-color: darkgrey;
+  }
+  .card{
+    margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+        width: 20%;
+  }
+  .card-img-top{
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    width: 20%;
+  }
